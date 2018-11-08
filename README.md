@@ -1,3 +1,2 @@
-# My-project-template
-
-My-project-template
+# My-project
+My-project

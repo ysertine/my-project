@@ -58,25 +58,25 @@
 			<scope>runtime</scope>
 		</dependency>
 		
-		<!-- mybatis框架 -->
+		<!-- 数据库连接池 -->
+		<dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.1.10</version>
+        </dependency>
+		
+		<!-- Mybatis框架 -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>1.2.0</version>
 		</dependency>
 		
-		<!-- shiro安全框架 -->
+		<!-- Shiro安全框架 -->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-spring</artifactId>
 			<version>1.4.0</version>
-		</dependency>
-		
-		<!-- ehcache缓存 -->
-		<dependency>
-			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-ehcache</artifactId>
-			<version>1.2.2</version>
 		</dependency>
 		
 		<!-- 前端框架 -->
@@ -85,16 +85,17 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		
-		<dependency>  
-    		<groupId>com.github.theborakompanioni</groupId>  
-    		<artifactId>thymeleaf-extras-shiro</artifactId>  
-   			<version>1.2.1</version>  
-		</dependency>  
-		
-		<!-- HTML扫描器和标签补偿器 -->
+		<!-- 常用工具类 -->
 		<dependency>
-			<groupId>net.sourceforge.nekohtml</groupId>
-			<artifactId>nekohtml</artifactId>
+        	<groupId>org.apache.commons</groupId>
+        	<artifactId>commons-lang3</artifactId>
+        </dependency>
+		
+		<!-- Spring默认使用yml中的配置，引入该包用于读取传统的xml或properties配置 -->
+		<dependency>
+			<groupId> org.springframework.boot </groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional> true </optional>
 		</dependency>
 	</dependencies>
 

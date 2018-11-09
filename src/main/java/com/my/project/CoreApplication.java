@@ -1,15 +1,18 @@
 package com.my.project;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Spring Boot项目启动类，主要用于做一些框架配置
  * <p>Title: CoreApplication<／p>
- * <p>Description: Spring Boot启动类，主要用于做一些框架配置<／p>
+ * <p>Description: Spring Boot启动类，主要用于做一些框架配置。
+ * 启动类中添加mapper包扫描注解@MapperScan，这样就不用再每个maper中加注解。<／p>
  * @author DengJinbo
  * @date 2018年11月5日
  */
+@MapperScan("com.my.project.*.dao")
 @SpringBootApplication
 public class CoreApplication {
 

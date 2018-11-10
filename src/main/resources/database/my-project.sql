@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2018-11-09 17:36:09                          */
+/* Created on:     2018-11-10 16:39:22                          */
 /*==============================================================*/
 
 
@@ -65,11 +65,11 @@ alter table sys_role_permission comment '系统角色权限表';
 create table sys_user
 (
    id                   int(11) not null comment '主键ID',
-   username             varchar(20) not null comment '用户名',
+   user_name            varchar(20) not null comment '用户名',
    password             varchar(50) not null comment '用户密码',
    salt                 varchar(50) not null comment '加密盐值',
    sex                  tinyint(4) comment '性别：1=男，2=女',
-   phone                varchar(20) comment '手机号码',
+   phone                varchar(20) not null comment '手机号码',
    email                varchar(50) comment '电子邮箱',
    create_time          datetime comment '创建时间',
    update_time          datetime comment '更新时间',

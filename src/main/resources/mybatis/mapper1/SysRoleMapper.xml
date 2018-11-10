@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.my.project.system.mapper.dao1.SysRoleDao" >
+    <resultMap id="BaseResultMap" type="com.my.project.system.domain.SysRole" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="role" property="role" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+    </resultMap>
+    
+    <sql id="BASE_TABLE">
+        sys_role
+    </sql>
+    
+    <sql id="Base_Column_List" >
+        id, role, description, status
+    </sql>
+
+	<!-- 根据系统权限ID获取系统权限实体 -->
+    <select id="selectRoleById" parameterType="java.lang.Long" resultMap="BaseResultMap" >
+       SELECT 
+       	<include refid="Base_Column_List" />
+	   FROM 
+	   	<include refid="BASE_TABLE"/>
+	   WHERE id = #{id}
+    </select>
+    
+    <!-- 根据系统用户Id查询角色ID列表 -->
+    <select id="listRoleIdByUserId" parameterType="java.lang.Long" resultType="java.lang.Long" >
+       SELECT 
+       	role_id
+	   FROM 
+	   	sys_user_role
+	   WHERE user_id = #{userId}
+    </select>
+
+</mapper>

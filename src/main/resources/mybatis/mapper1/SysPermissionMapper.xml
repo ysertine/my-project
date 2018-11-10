@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.my.project.system.mapper.dao1.SysPermissionDao" >
+    <resultMap id="BaseResultMap" type="com.my.project.system.domain.SysPermission" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+        <result column="parent_ids" property="parentIds" jdbcType="VARCHAR" />
+        <result column="permission" property="permission" javaType="VARCHAR"/>
+        <result column="resource_type" property="resourceType" jdbcType="INTEGER" />
+        <result column="url" property="url" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+    </resultMap>
+    
+    <sql id="BASE_TABLE">
+        sys_permission
+    </sql>
+    
+    <sql id="Base_Column_List" >
+        id, name, parent_id, parent_ids, permission, resource_type, url, status
+    </sql>
+
+	<!-- 根据系统权限ID查询权限实体 -->
+    <select id="selectPermissionById" parameterType="java.lang.Long" resultMap="BaseResultMap" >
+       SELECT 
+       	<include refid="Base_Column_List" />
+	   FROM 
+	   	<include refid="BASE_TABLE"/>
+	   WHERE id = #{id}
+    </select>
+    
+    <!-- 根据系统角色ID获取权限ID列表 -->
+    <select id="listPermissionIdByRoleId" parameterType="java.lang.Long" resultType="java.lang.Long" >
+       SELECT 
+       	permission_id
+	   FROM 
+	   	sys_role_permission
+	   WHERE role_id = #{roleId}
+    </select>
+
+</mapper>

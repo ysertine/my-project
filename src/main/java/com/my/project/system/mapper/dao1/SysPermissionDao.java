@@ -5,33 +5,33 @@ import java.util.List;
 import com.my.project.system.domain.SysPermission;
 
 /**
- * 系统权限DAO层接口
- * <p>Title: SysPermissionDao<／p>
- * <p>Description: 系统权限DAO层接口<／p>
+ * @Title SysPermissionDao.java
+ * @Description 系统权限DAO层接口
  * @author DengJinbo
  * @date 2018年11月10日
  */
 public interface SysPermissionDao {
 
 	/**
-	 * 根据系统权限ID查询权限实体
-	 * <p>Title: selectPermissionById<／p>
-	 * <p>Description: 根据系统权限ID查询权限实体<／p>
+	 * 
+	 * @Title selectPermissionById 
+	 * @Description 根据系统权限ID查询系统权限实体
 	 * @author DengJinbo
 	 * @date 2018年11月10日
+	 * @version 1.0
 	 * @param id 系统权限ID
-	 * @return
+	 * @return 系统权限实体
 	 */
 	SysPermission selectPermissionById(Long id);
 	
 	/**
-	 * 根据系统角色ID获取权限ID列表
-	 * <p>Title: listPermissionByRoleId<／p>
-	 * <p>Description: 根据系统角色ID获取权限ID列表<／p>
+	 * @Title listPermissionIdByRoleId 
+	 * @Description 根据系统角色ID获取系统权限ID列表
 	 * @author DengJinbo
 	 * @date 2018年11月10日
+	 * @version 1.0
 	 * @param roleId 系统角色ID
-	 * @return
+	 * @return 系统权限ID列表
 	 */
 	List<Long> listPermissionIdByRoleId(Long roleId);
 }

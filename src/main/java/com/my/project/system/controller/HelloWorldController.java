@@ -4,10 +4,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * hello world控制器
- * <p>Title: HelloWorldController<／p>
- * <p>Description: Spring Boot项目hello world，添加@RestController注解后，
- * 该controller里面的方法都以JSON格式输出，不用再写JackJson配置了！<／p>
+ * @Title HelloWorldController.java
+ * @Description Spring Boot项目hello world，添加@RestController注解后，
+ * 		该controller里面的方法都以JSON格式输出，不用再写JackJson配置了！
  * @author DengJinbo
  * @date 2018年11月5日
  */
@@ -15,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloWorldController {
 
 	/**
-	 * hello方法
-	 * <p>Title: hello<／p>
-	 * <p>Description: hello方法<／p>
+	 * @Title hello 
+	 * @Description hello方法
 	 * @author DengJinbo
 	 * @date 2018年11月5日
-	 * @return “hello world!”
+	 * @version 1.0
+	 * @return
 	 */
 	@RequestMapping("/hello")
 	public String hello() {

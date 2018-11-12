@@ -10,9 +10,8 @@ import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
 
 /**
- * Druid连接池监控配置
- * <p>Title: DruidConfig<／p>
- * <p>Description: Druid连接池监控配置<／p>
+ * @Title DruidConfig.java
+ * @Description Druid连接池监控配置
  * @author DengJinbo
  * @date 2018年11月9日
  */
@@ -21,8 +20,8 @@ public class DruidConfig {
 
 	/**
 	 * 注册servlet信息，配置监控图
-	 * <p>Title: druidServlet<／p>
-	 * <p>Description: 注册servlet信息，配置监控图<／p>
+	 * <p>Title druidServlet<／p>
+	 * <p>Description 注册servlet信息，配置监控图<／p>
 	 * @author DengJinbo
 	 * @date 2018年11月9日
 	 * @return
@@ -34,8 +33,8 @@ public class DruidConfig {
 		ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
 		// 白名单
 		servletRegistrationBean.addInitParameter("allow", "192.168.1.6");
-		// IP黑名单(存在共同时，deny优先于allow) : 
-		// 如果满足deny的话提示:Sorry, you are not permitted to view this page.
+		// IP黑名单(存在共同时，deny优先于allow)  
+		// 如果满足deny的话提示Sorry, you are not permitted to view this page.
 		servletRegistrationBean.addInitParameter("deny", "192.168.1.73");
 		// 用于登陆的账号密码
 		servletRegistrationBean.addInitParameter("loginUsername", "admin");
@@ -47,8 +46,8 @@ public class DruidConfig {
 
 	/**
 	 * 注册filter信息，用于拦截
-	 * <p>Title: filterRegistrationBean<／p>
-	 * <p>Description: 注册filter信息，用于拦截<／p>
+	 * <p>Title filterRegistrationBean<／p>
+	 * <p>Description 注册filter信息，用于拦截<／p>
 	 * @author DengJinbo
 	 * @date 2018年11月9日
 	 * @return

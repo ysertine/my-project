@@ -1,9 +1,8 @@
 package com.my.project.system.domain;
 
 /**
- * 系统角色实体类
- * <p>Title: SysRole<／p>
- * <p>Description: 系统角色实体类<／p>
+ * @Title SysRole.java
+ * @Description 系统角色实体类
  * @author DengJinbo
  * @date 2018年11月10日
  */

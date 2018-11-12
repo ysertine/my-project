@@ -3,22 +3,21 @@ package com.my.project.system.mapper.dao1;
 import com.my.project.system.domain.SysUser;
 
 /**
- * 系统用户DAO层接口
- * <p>Title: SysUserDao<／p>
- * <p>Description: 系统用户DAO层接口<／p>
+ * @Title SysUserDao.java
+ * @Description 系统用户DAO层接口
  * @author DengJinbo
  * @date 2018年11月10日
  */
 public interface SysUserDao {
 
 	/**
-	 * 根据系统用户名查询用户
-	 * <p>Title: selectByUsername<／p>
-	 * <p>Description: 根据系统用户名查询用户<／p>
+	 * @Title selectByUsername 
+	 * @Description 根据系统用户名查询系统用户
 	 * @author DengJinbo
 	 * @date 2018年11月10日
+	 * @version 1.0
 	 * @param userName 系统用户名
-	 * @return
+	 * @return 系统用户实体
 	 */
 	SysUser selectByUsername(String userName);
 	

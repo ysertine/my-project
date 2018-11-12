@@ -1,9 +1,8 @@
 package com.my.project.system.domain;
 
 /**
- * 系统权限实体类
- * <p>Title: SysPermission<／p>
- * <p>Description: 系统权限实体类<／p>
+ * @Title SysPermission.java
+ * @Description 系统权限实体类
  * @author DengJinbo
  * @date 2018年11月10日
  */

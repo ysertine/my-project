@@ -16,9 +16,8 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 
 /**
- * 数据源2配置
- * <p>Title: DataSource1Config<／p>
- * <p>Description: 数据源2配置<／p>
+ * @Title DataSource2Config.java
+ * @Description 数据源2配置
  * @author DengJinbo
  * @date 2018年11月9日
  */
@@ -39,7 +38,7 @@ public class DataSource2Config {
 			throws Exception {
 		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
 		bean.setDataSource(druidDataSource);
-		bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
+		bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpathmapper/*.xml"));
 		return bean.getObject();
 	}
 

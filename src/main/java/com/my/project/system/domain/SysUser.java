@@ -3,9 +3,8 @@ package com.my.project.system.domain;
 import java.util.Date;
 
 /**
- * 系统用户实体类
- * <p>Title: User<／p>
- * <p>Description: 系统用户实体类<／p>
+ * @Title SysUser.java
+ * @Description 系统角色实体类
  * @author DengJinbo
  * @date 2018年11月10日
  */

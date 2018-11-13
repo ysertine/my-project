@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.my.project.system.mapper.dao1.SysRoleDao" >
+<mapper namespace="com.my.project.system.dao.SysRoleDao" >
     <resultMap id="BaseResultMap" type="com.my.project.system.domain.SysRole" >
         <id column="id" property="id" jdbcType="BIGINT" />
         <result column="role" property="role" jdbcType="VARCHAR" />
@@ -26,7 +26,7 @@
     </select>
     
     <!-- 根据系统用户Id查询角色ID列表 -->
-    <select id="listRoleIdByUserId" parameterType="java.lang.Long" resultType="java.lang.Long" >
+    <select id="selectRoleIdByUserId" parameterType="java.lang.Long" resultType="java.lang.Long" >
        SELECT 
        	role_id
 	   FROM 

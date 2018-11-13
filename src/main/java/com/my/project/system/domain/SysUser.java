@@ -26,7 +26,7 @@ public class SysUser {
 	private String password;
 	
 	/**
-	 * 加密盐值
+	 * 盐
 	 */
 	private String salt;
 	
@@ -46,7 +46,7 @@ public class SysUser {
 	private String email;
 	
 	/**
-	 *创建时间
+	 * 创建时间
 	 */
 	private Date createTime;
 	
@@ -152,5 +152,10 @@ public class SysUser {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+	
+	// 密码加盐，盐值由数据库中的salt和账号组合而成
+    public String getCredentialsSalt() {
+        return this.userName + this.salt;
+    }
 	
 }

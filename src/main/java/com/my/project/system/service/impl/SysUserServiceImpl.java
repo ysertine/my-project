@@ -1,9 +1,10 @@
 package com.my.project.system.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.my.project.system.dao.SysUserDao;
 import com.my.project.system.domain.SysUser;
-import com.my.project.system.mapper.dao1.SysUserDao;
 import com.my.project.system.service.SysUserService;
 
 /**
@@ -12,6 +13,7 @@ import com.my.project.system.service.SysUserService;
  * @author DengJinbo
  * @date 2018年11月12日
  */
+@Service(value = "sysUserService")
 public class SysUserServiceImpl implements SysUserService {
 
 	/**
@@ -21,8 +23,8 @@ public class SysUserServiceImpl implements SysUserService {
 	private SysUserDao sysUserDao;
 	
 	@Override
-	public SysUser selectByUsername(String userName) {
-		return sysUserDao.selectByUsername(userName);
+	public SysUser findByUserName(String userName) {
+		return sysUserDao.selectByUserName(userName);
 	}
 
 }

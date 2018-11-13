@@ -1,4 +1,4 @@
-package com.my.project.system.mapper.dao1;
+package com.my.project.system.dao;
 
 import com.my.project.system.domain.SysUser;
 
@@ -19,7 +19,7 @@ public interface SysUserDao {
 	 * @param userName 系统用户名
 	 * @return 系统用户实体
 	 */
-	SysUser selectByUsername(String userName);
+	SysUser selectByUserName(String userName);
 	
 	
 }

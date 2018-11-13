@@ -11,7 +11,7 @@ import com.my.project.system.domain.SysUser;
 public interface SysUserService {
 
 	/**
-	 * @Title selectByUsername 
+	 * @Title findByUsername 
 	 * @Description 根据系统用户名查询用户
 	 * @author DengJinbo
 	 * @date 2018年11月12日
@@ -19,5 +19,5 @@ public interface SysUserService {
 	 * @param userName 系统用户名
 	 * @return 用户实体
 	 */
-	SysUser selectByUsername(String userName);
+	SysUser findByUserName(String userName);
 }

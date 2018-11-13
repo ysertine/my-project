@@ -1,4 +1,4 @@
-package com.my.project.system.config;
+package com.my.project.system.datasource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -22,7 +22,7 @@ import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
  * @date 2018年11月9日
  */
 @Configuration
-@MapperScan(basePackages = "com.my.project.system.mapper.dao1", sqlSessionTemplateRef = "sqlSessionTemplate1")
+@MapperScan(basePackages = "com.my.project.system.dao", sqlSessionTemplateRef = "sqlSessionTemplate1")
 public class DataSource1Config {
 
 	@Bean(name = "dataSource1")
@@ -38,7 +38,7 @@ public class DataSource1Config {
 			throws Exception {
 		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
 		bean.setDataSource(druidDataSource);
-		bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpathmapper/*.xml"));
+		bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mybatis/mapper1/*.xml"));
 		return bean.getObject();
 	}
 

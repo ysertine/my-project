@@ -1,4 +1,4 @@
-package com.my.project.system.config;
+package com.my.project.system.datasource;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

@@ -1,4 +1,4 @@
-package com.my.project.system.mapper.dao1;
+package com.my.project.system.dao;
 
 import java.util.List;
 
@@ -25,13 +25,13 @@ public interface SysPermissionDao {
 	SysPermission selectPermissionById(Long id);
 	
 	/**
-	 * @Title listPermissionIdByRoleId 
-	 * @Description 根据系统角色ID获取系统权限ID列表
+	 * @Title selectPermissionIdByRoleId 
+	 * @Description 根据系统角色ID查询系统权限ID列表
 	 * @author DengJinbo
 	 * @date 2018年11月10日
 	 * @version 1.0
 	 * @param roleId 系统角色ID
 	 * @return 系统权限ID列表
 	 */
-	List<Long> listPermissionIdByRoleId(Long roleId);
+	List<Long> selectPermissionIdByRoleId(Long roleId);
 }

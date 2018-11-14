@@ -13,9 +13,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
 import com.my.project.system.domain.SysUser;
-import com.my.project.system.service.SysPermissionService;
-import com.my.project.system.service.SysRoleService;
-import com.my.project.system.service.SysUserService;
+import com.my.project.system.service.SysUserInfoService;
 
 /**
  * @Title MyshiroRealm.java
@@ -23,16 +21,10 @@ import com.my.project.system.service.SysUserService;
  * @author DengJinbo
  * @date 2018年11月13日
  */
-public class MyshiroRealm extends AuthorizingRealm {
+public class MyShiroRealm extends AuthorizingRealm {
 
 	@Resource
-	private SysUserService sysUserService;
-
-	@Resource
-	private SysRoleService sysRoleSercie;
-
-	@Resource
-	private SysPermissionService sysPermissionService;
+	private SysUserInfoService sysUserInfoService;
 
 	/**
 	 * @Title doGetAuthorizationInfo 
@@ -47,12 +39,12 @@ public class MyshiroRealm extends AuthorizingRealm {
 		System.out.println("权限配置-->MyShiroRealm.doGetAuthorizationInfo()");
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 		SysUser sysUser = (SysUser) principalCollection.getPrimaryPrincipal();
-		for (Long roleId : sysRoleSercie.listRoleIdByUserId(sysUser.getId())) {
+		for (Long roleId : sysUserInfoService.listRoleIdByUserId(sysUser.getId())) {
 			// 查询用户所有的角色注入控制器
-			authorizationInfo.addRole(sysRoleSercie.findRoleById(roleId).getRole());
-			for (Long permissionId : sysPermissionService.listPermissionIdByRoleId(roleId)) {
+			authorizationInfo.addRole(sysUserInfoService.findRoleById(roleId).getRole());
+			for (Long permissionId : sysUserInfoService.listPermissionIdByRoleId(roleId)) {
 				// 查询用户所有的权限注入控制器
-				authorizationInfo.addStringPermission(sysPermissionService.findPermissionById(permissionId).getPermission());
+				authorizationInfo.addStringPermission(sysUserInfoService.findPermissionById(permissionId).getPermission());
 			}
 		}
 		return authorizationInfo;
@@ -68,16 +60,17 @@ public class MyshiroRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken)
 			throws AuthenticationException {
+		// 加这一步的目的是在Post请求的时候会先进认证，然后在到请求
+		if (authenticationToken.getPrincipal() == null) {
+			return null;
+		}
 		System.out.println("我在执行登陆验证-----");
-		String userName = (String) authenticationToken.getPrincipal();
-		System.out.println("userName--" + authenticationToken);
-		SysUser sysUser = sysUserService.findByUserName(userName);
+		String userName = authenticationToken.getPrincipal().toString();
+		SysUser sysUser = sysUserInfoService.findByUserName(userName);
 		if (sysUser == null) {
 			return null;
 		}
-		System.out.println("credentialsSalt--" + sysUser.getCredentialsSalt());
-		System.out.println("password--" + sysUser.getPassword());
-		SimpleAuthenticationInfo authorizationInfo = new SimpleAuthenticationInfo(sysUser, sysUser.getPassword(),
+		SimpleAuthenticationInfo authorizationInfo = new SimpleAuthenticationInfo(userName, sysUser.getPassword(),
 				ByteSource.Util.bytes(sysUser.getCredentialsSalt()), getName());
 		return authorizationInfo;
 	}

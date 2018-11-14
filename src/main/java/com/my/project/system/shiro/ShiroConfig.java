@@ -22,10 +22,56 @@ import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
  */
 @Configuration
 public class ShiroConfig {
+	
+	/**
+	 * @Title myshiroRealm 
+	 * @Description 将自己写的验证方法加入容器
+	 * @author DengJinbo
+	 * @date 2018年11月13日
+	 * @version 1.0
+	 * @return
+	 */
+	@Bean
+	public MyShiroRealm myShiroRealm() {
+		MyShiroRealm myShiroRealm = new MyShiroRealm();
+		myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+		return myShiroRealm;
+	}
+	
+	/**
+	 * @Title hashedCredentialsMatcher 
+	 * @Description 凭证匹配器，密码校验交给Shiro的SimpleAuthenticationInfo进行处理
+	 * @author DengJinbo
+	 * @date 2018年11月13日
+	 * @version 1.0
+	 * @return
+	 */
+	@Bean
+	public HashedCredentialsMatcher hashedCredentialsMatcher() {
+		HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+		hashedCredentialsMatcher.setHashAlgorithmName("md5"); // md5散列算法
+		hashedCredentialsMatcher.setHashIterations(2); // 散列次数
+		return hashedCredentialsMatcher;
+	}
+	
+	/**
+	 * @Title securityManager 
+	 * @Description 权限管理，配置主要是Realm的管理认证
+	 * @author DengJinbo
+	 * @date 2018年11月13日
+	 * @version 1.0
+	 * @return
+	 */
+	@Bean
+	public SecurityManager securityManager() {
+		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+		securityManager.setRealm(myShiroRealm());
+		return securityManager;
+	}
 
 	/**
-	 * @Title shriofilter 
-	 * @Description 
+	 * @Title shiroFilterFactoryBean 
+	 * @Description Filter工厂，设置对应的过滤条件和跳转条件
 	 * @author DengJinbo
 	 * @date 2018年11月13日
 	 * @version 1.0
@@ -37,71 +83,25 @@ public class ShiroConfig {
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
 		
-		shiroFilterFactoryBean.setLoginUrl("/login");
-		shiroFilterFactoryBean.setSuccessUrl("/index");
-		shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 		// 拦截器，从上向下顺序执行，一般将/**放在最为下边
 		// <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
 		Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+		filterChainDefinitionMap.put("/hello", "anon");
 		filterChainDefinitionMap.put("/register", "anon");
-		filterChainDefinitionMap.put("/nofilter/**", "anon");
-		filterChainDefinitionMap.put("/css/**", "anon");
-		filterChainDefinitionMap.put("/js/**", "anon");
+		filterChainDefinitionMap.put("/static/**", "anon");
 		filterChainDefinitionMap.put("/logout", "logout");
-		filterChainDefinitionMap.put("/**", "authc"); 
+		filterChainDefinitionMap.put("/**", "authc");  // 对所有用户认证
+		
+		shiroFilterFactoryBean.setLoginUrl("/login");
+		shiroFilterFactoryBean.setSuccessUrl("/index");
+		shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 	}
 
 	/**
-	 * @Title hashedCredentialsMatcher 
-	 * @Description 凭证匹配器（由于我们的密码校验交给Shiro的SimpleAuthenticationInfo进行处理了）
-	 * @author DengJinbo
-	 * @date 2018年11月13日
-	 * @version 1.0
-	 * @return
-	 */
-	@Bean
-	public HashedCredentialsMatcher hashedCredentialsMatcher() {
-		HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
-		hashedCredentialsMatcher.setHashAlgorithmName("md5");// md5散列算法
-		hashedCredentialsMatcher.setHashIterations(2);// 散列次数
-		return hashedCredentialsMatcher;
-	}
-
-	/**
-	 * @Title myshiroRealm 
-	 * @Description 系统用户数据注入
-	 * @author DengJinbo
-	 * @date 2018年11月13日
-	 * @version 1.0
-	 * @return
-	 */
-	@Bean
-	public MyshiroRealm myshiroRealm() {
-		MyshiroRealm myshiroRealm = new MyshiroRealm();
-		myshiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
-		return myshiroRealm;
-	}
-
-	/**
-	 * @Title securityManager 
-	 * @Description 配置管理层。即安全控制层
-	 * @author DengJinbo
-	 * @date 2018年11月13日
-	 * @version 1.0
-	 * @return
-	 */
-	@Bean
-	public SecurityManager securityManager() {
-		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-		securityManager.setRealm(myshiroRealm());
-		return securityManager;
-	}
-
-	/**
 	 * @Title authorizationAttributeSourceAdvisor 
-	 * @Description 开启shiro aop注解支持. 使用代理方式，所以需要开启代码支持。
+	 * @Description 开启Shiro AOP注解支持。
 	 * @author DengJinbo
 	 * @date 2018年11月13日
 	 * @version 1.0
@@ -149,5 +149,4 @@ public class ShiroConfig {
 		r.setExceptionAttribute("ex"); // Default is "exception"
 		return r;
 	}
-
 }

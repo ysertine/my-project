@@ -82,6 +82,9 @@ public class ShiroConfig {
 	public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
+		shiroFilterFactoryBean.setLoginUrl("/login");
+		shiroFilterFactoryBean.setSuccessUrl("/index");
+		shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 		
 		// 拦截器，从上向下顺序执行，一般将/**放在最为下边
 		// <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
@@ -92,9 +95,6 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/logout", "logout");
 		filterChainDefinitionMap.put("/**", "authc");  // 对所有用户认证
 		
-		shiroFilterFactoryBean.setLoginUrl("/login");
-		shiroFilterFactoryBean.setSuccessUrl("/index");
-		shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 	}

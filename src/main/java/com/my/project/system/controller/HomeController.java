@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
@@ -43,7 +44,6 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
-		System.out.println("-----get-----");
 		return "login";
 	}
 
@@ -58,17 +58,21 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpServletRequest request, Map<String,Object> map) {
-		System.out.println("-----post-----");
-		System.out.println("username-----" + request.getParameter("userName"));
 		// 添加用户认证信息
 		Subject subject = SecurityUtils.getSubject();
-		UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(request.getParameter("userName"),
-				request.getParameter("password"));
-		// 进行验证，这里可以捕获异常，然后返回对应信息
-		subject.login(usernamePasswordToken);
+		String userName = request.getParameter("userName");
+		String password = request.getParameter("password");
+		UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(userName, password);
+		try {
+			// 登录验证
+			subject.login(usernamePasswordToken);
+			System.out.println("用户：" + userName + "，登陆成功");
+		} catch (AuthenticationException exception) {
+			System.out.println("用户：" + userName + "，登陆失败");
+		}
 		return "login";
 	}
-
+ 
 	/**
 	 * @Title index
 	 * @Description 跳转首页控制

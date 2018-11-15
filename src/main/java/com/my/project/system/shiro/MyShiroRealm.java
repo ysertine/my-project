@@ -64,12 +64,12 @@ public class MyShiroRealm extends AuthorizingRealm {
 		if (authenticationToken.getPrincipal() == null) {
 			return null;
 		}
-		System.out.println("我在执行登陆验证-----");
 		String userName = authenticationToken.getPrincipal().toString();
 		SysUser sysUser = sysUserInfoService.findByUserName(userName);
 		if (sysUser == null) {
 			return null;
 		}
+		System.out.println("----->" + userName);
 		SimpleAuthenticationInfo authorizationInfo = new SimpleAuthenticationInfo(userName, sysUser.getPassword(),
 				ByteSource.Util.bytes(sysUser.getCredentialsSalt()), getName());
 		return authorizationInfo;

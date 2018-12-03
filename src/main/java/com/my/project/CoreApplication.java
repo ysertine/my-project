@@ -10,7 +10,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * @Title CoreApplication.java
  * @Description Spring Boot启动类，主要用于做一些框架配置。
  * 	启动类中添加mapper包扫描注解@MapperScan，这样就不用再每个maper中加注解。
- * 	改写启动类，继承SpringBootServletInitializer
+ * 	修改启动类，继承SpringBootServletInitializer
  * @author DengJinbo
  * @date 2018年11月5日
  */

@@ -3,17 +3,20 @@ package com.my.project;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 /**
  * @Title CoreApplication.java
  * @Description Spring Boot启动类，主要用于做一些框架配置。
- * 		启动类中添加mapper包扫描注解@MapperScan，这样就不用再每个maper中加注解。
+ * 	启动类中添加mapper包扫描注解@MapperScan，这样就不用再每个maper中加注解。
+ * 	改写启动类，继承SpringBootServletInitializer
  * @author DengJinbo
  * @date 2018年11月5日
  */
-@MapperScan("com.my.project.*.dao")
 @SpringBootApplication
-public class CoreApplication {
+@MapperScan("com.my.project.*.dao")
+public class CoreApplication extends SpringBootServletInitializer {
 
 	/**
 	 * @Title main 
@@ -24,6 +27,18 @@ public class CoreApplication {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		System.out.println("========== ヾ(◍°∇°◍)ﾉﾞ ==========  Spring boot启动！");
 		SpringApplication.run(CoreApplication.class, args);
+	}
+	
+	/**
+	 * @Description 重写configure方法，把启动类CoreApplication注册进去。
+	 * 	外部web应用服务器构建Web Application Context的时候，会把启动类添加进去。
+	 * @author DengJinbo
+	 * @date 2018年12月3日
+	 */
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return builder.sources(CoreApplication.class);
 	}
 }

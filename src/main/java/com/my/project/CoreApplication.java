@@ -27,7 +27,6 @@ public class CoreApplication extends SpringBootServletInitializer {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("========== ヾ(◍°∇°◍)ﾉﾞ ==========  Spring boot启动！");
 		SpringApplication.run(CoreApplication.class, args);
 	}
 	

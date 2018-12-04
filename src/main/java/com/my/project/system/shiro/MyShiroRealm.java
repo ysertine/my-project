@@ -2,6 +2,7 @@ package com.my.project.system.shiro;
 
 import javax.annotation.Resource;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -9,6 +10,7 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
@@ -69,9 +71,13 @@ public class MyShiroRealm extends AuthorizingRealm {
 		if (sysUser == null) {
 			return null;
 		}
-		System.out.println("----->" + userName);
 		SimpleAuthenticationInfo authorizationInfo = new SimpleAuthenticationInfo(userName, sysUser.getPassword(),
 				ByteSource.Util.bytes(sysUser.getCredentialsSalt()), getName());
+		
+		// 当验证都通过后，把用户信息放在session里
+        Session session = SecurityUtils.getSubject().getSession();
+        session.setAttribute("userSession", sysUser);
+        session.setAttribute("userSessionId", sysUser.getId());
 		return authorizationInfo;
 	}
 

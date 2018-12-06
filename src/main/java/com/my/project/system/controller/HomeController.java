@@ -27,19 +27,6 @@ import com.my.project.system.util.R;
 public class HomeController {
 
 	/**
-	 * @Title register
-	 * @Description 注册
-	 * @author DengJinbo
-	 * @date 2018年11月13日
-	 * @version 1.0
-	 * @return
-	 */
-	@RequestMapping("/register")
-	public String register() {
-		return "register";
-	}
-
-	/**
 	 * @Title login
 	 * @Description 退出跳转登录，退出的时候是get请求
 	 * @author DengJinbo

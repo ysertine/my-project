@@ -84,7 +84,33 @@ public class HomeController {
 	public String index() {
 		return "index";
 	}
-
+	
+	/**
+	 * @Title main
+	 * @Description 跳转首页控制
+	 * @author DengJinbo
+	 * @date 2018年11月14日
+	 * @version 1.0
+	 * @return
+	 */
+	@RequestMapping(value = "/main")
+	public String main() {
+		return "main";
+	}
+	
+	/**
+	 * @Title index
+	 * @Description 跳转首页控制
+	 * @author DengJinbo
+	 * @date 2018年11月14日
+	 * @version 1.0
+	 * @return
+	 */
+	@RequestMapping(value = "/index2")
+	public String index2() {
+		return "index2";
+	}
+	
 	/**
 	 * @Title logout
 	 * @Description 登出

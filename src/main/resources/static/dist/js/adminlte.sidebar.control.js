@@ -1,9 +1,3 @@
-/**
- * AdminLTE Demo Menu
- * ------------------
- * You should not use this file in production.
- * This file is for demo purposes only.
- */
 (function ($) {
   'use strict'
 
@@ -28,14 +22,14 @@
   ]
 
   $container.append(
-    '<h5>Customize AdminLTE</h5><hr class="mb-2"/>'
-    + '<h6>Navbar Variants</h6>'
+    '<h5>定制化主题</h5><hr class="mb-2"/>'
+    + '<h6>导航栏</h6>'
   )
 
-  var $navbar_variants        = $('<div />', {
+  var $navbar_variants = $('<div />', {
     'class': 'd-flex'
   })
-  var navbar_all_colors       = navbar_dark_skins.concat(navbar_light_skins)
+  var navbar_all_colors = navbar_dark_skins.concat(navbar_light_skins)
   var $navbar_variants_colors = createSkinBlock(navbar_all_colors, function (e) {
     var color = $(this).data('color')
     console.log('Adding ' + color)
@@ -76,7 +70,7 @@
     }
   })
   $checkbox_container.append($navbar_border)
-  $checkbox_container.append('<span>Navbar border</span>')
+  $checkbox_container.append('<span>是否显示导航栏边界</span>')
   $container.append($checkbox_container)
 
 
@@ -101,15 +95,15 @@
     'sidebar-light-success'
   ]
 
-  $container.append('<h6>Dark Sidebar Variants</h6>')
+  $container.append('<h6>黑色侧边栏</h6>')
   var $sidebar_variants = $('<div />', {
     'class': 'd-flex'
   })
   $container.append($sidebar_variants)
   $container.append(createSkinBlock(sidebar_colors, function () {
-    var color         = $(this).data('color')
+    var color = $(this).data('color')
     var sidebar_class = 'sidebar-dark-' + color.replace('bg-', '')
-    var $sidebar      = $('.main-sidebar')
+    var $sidebar = $('.main-sidebar')
     sidebar_skins.map(function (skin) {
       $sidebar.removeClass(skin)
     })
@@ -117,15 +111,15 @@
     $sidebar.addClass(sidebar_class)
   }))
 
-  $container.append('<h6>Light Sidebar Variants</h6>')
+  $container.append('<h6>明亮侧边栏</h6>')
   var $sidebar_variants = $('<div />', {
     'class': 'd-flex'
   })
   $container.append($sidebar_variants)
   $container.append(createSkinBlock(sidebar_colors, function () {
-    var color         = $(this).data('color')
+    var color = $(this).data('color')
     var sidebar_class = 'sidebar-light-' + color.replace('bg-', '')
-    var $sidebar      = $('.main-sidebar')
+    var $sidebar = $('.main-sidebar')
     sidebar_skins.map(function (skin) {
       $sidebar.removeClass(skin)
     })
@@ -134,7 +128,7 @@
   }))
 
   var logo_skins = navbar_all_colors
-  $container.append('<h6>Brand Logo Variants</h6>')
+  $container.append('<h6>品牌Logo</h6>')
   var $logo_variants = $('<div />', {
     'class': 'd-flex'
   })
